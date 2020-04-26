@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN" "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+	
+
+	<!-- 기타 -->
+	<sqlMap resource="sqlmap/ftp_progect1/ftp_project_main.xml"/>
+	<sqlMap resource="sqlmap/ftp_progect1/ftp_project_board.xml"/>
+	<sqlMap resource="sqlmap/ftp_progect1/ftp_project_user.xml"/>
+
+</sqlMapConfig>
+

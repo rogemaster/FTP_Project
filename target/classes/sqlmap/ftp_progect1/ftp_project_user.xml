@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="ftp_progect1">
+
+	<typeAlias alias="Ftp_projectUserVO"  type="com.ftp.projectuser.Ftp_projectUserVO" />
+
+
+ 
+  <select id="ftp_projectUserDAO.test"  parameterClass="Ftp_projectUserVO"  resultClass="int">
+  	select count(board_seq) AS user_seq from test.ftp_board
+  </select>
+
+
+</sqlMap>

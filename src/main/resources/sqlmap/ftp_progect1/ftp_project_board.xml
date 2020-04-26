@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="ftp_progect1">
+
+	<typeAlias alias="ftp_projectBoardVO"  type="com.ftp.projectboard.Ftp_projectBoardVO" />
+
+	
+	<select id="ftp_projectBoardDAO.boardCnt" resultClass="int">
+		select count(*) from ftp_board;
+	</select>
+ 
+	
+	<select id="ftp_projectBoardDAO.all_board_list" parameterClass="ftp_projectBoardVO" resultClass="ftp_projectBoardVO" >
+		<!-- select board_seq, board_title, board_writer_name, board_content_text, board_reg_date, board_notice from test.ftp_board -->
+		
+		<!-- select @rownum:=@rownum + 1, board_seq, board_title, board_writer_name, board_content_text, board_reg_date, board_notice 
+		from ftp_board where (@rownum:=0)=0 limit 5; -->
+		
+		select * from ftp_board order by board_seq desc limit #startIndex#, #cntPerPage#;
+		
+	</select>
+	
+	<select id="ftp_projectBoardDAO.search_writer_list" parameterClass="ftp_projectBoardVO" resultClass="ftp_projectBoardVO">
+		select board_seq, board_title, board_writer_name, board_content_text, board_reg_date, board_notice from ftp_board where board_writer_name = #board_writer_name#
+	</select>
+	
+	<select id="ftp_projectBoardDAO.search_content_list" parameterClass="ftp_projectBoardVO" resultClass="ftp_projectBoardVO">
+		select board_seq, board_title, board_writer_name, board_content_text, board_reg_date, board_notice from ftp_board where board_content_text like #board_content_text#
+	</select>
+	
+	<insert id="ftp_projectBoardDAO.board_save" parameterClass="ftp_projectBoardVO" >
+		insert into ftp_board(board_title, board_writer_name, board_content_text, board_reg_date, board_notice, board_img_path) 
+		values(#board_title#, #board_writer_name#, #board_content_text#, now(), #board_notice#, #board_img_path#)  
+	</insert>
+	
+	<select id="ftp_projectBoardDAO.board_view" parameterClass="ftp_projectBoardVO" resultClass="ftp_projectBoardVO">
+		select * from test.ftp_board where board_seq = #board_seq#
+	</select>
+	 
+<!-- 	
+	<update id="ftp_projectBoardDAO.board_update" parameterClass="ftp_projectBoardVO">
+      update test.ftp_board set 
+      board_title = #board_title#, 
+      board_writer_name = #board_writer_name#, 
+      board_content_text = #board_content_text# 
+      where board_seq = #board_seq#
+   </update>
+-->   
+
+   <delete id="ftp_projectBoardDAO.board_delete" parameterClass="ftp_projectBoardVO" >
+      delete from test.ftp_board where board_seq = #board_seq#
+   </delete> 
+
+
+</sqlMap>
